@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student" class="com.mainserver.march31.domain.Student"
+          scope="prototype">
+        <constructor-arg name="course" ref="cis"/>
+        <property name="id"
+                  value="#{T(com.mainserver.march31.Main).randomInt}"/>
+        <property name="firstName" value="#{cis.name}"/>
+    </bean>
+
+    <bean id="cis"
+          class="com.mainserver.march31.domain.Course">
+        <constructor-arg name="name" value="CIS"/>
+        <property name="id" value="1"/>
+    </bean>
+
+    <bean class="com.mainserver.march31.db.PostgresDbAdapter" />
+
+</beans>
